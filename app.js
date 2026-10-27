@@ -67,9 +67,9 @@ const sessionOption = {
 };
 
 
-// app.get("/", (req,res) => {
-//     res.send("HI, I am root");
-// });
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
 app.use(session(sessionOption));
 app.use(flash());
@@ -127,6 +127,8 @@ app.use((err,req,res,next) => {
     res.render("listings/error", { message });
 });
 
-app.listen(8080, () => {
-    console.log("Server is listening to port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
